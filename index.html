@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title</title>
+  <title>Rock Paper Scissorsplayed in browser console</title>
 </head>
 <body>
   <script>
@@ -26,22 +26,22 @@
         var playerSelectionToLowerCase = playerSelection.toLowerCase();
         
         if(playerSelectionToLowerCase==="rock" && computerSelection==="paper"){
-            var winner = "You lose| Paper beats Rock";
+            var winner = "You lose";
         }
         else if(playerSelectionToLowerCase==="rock" && computerSelection==="scissors"){
-            var winner = "You win| Rock beats Scissors";
+            var winner = "You win";
         }
         else if (playerSelectionToLowerCase==="paper" && computerSelection==="scissors"){
-            var winner = "You lose| Scissors beats paper";
+            var winner = "You lose";
         }
         else if(computerSelection==="rock" && playerSelectionToLowerCase==="paper"){
-            var winner = "You win| Rock beats Paper";
+            var winner = "You win";
         }
         else if(computerSelection==="rock" && playerSelectionToLowerCase==="scissors"){
-            var winner = "You lose| Rock beats Scissors";
+            var winner = "You lose";
         }
         else if(computerSelection==="paper" && playerSelectionToLowerCase==="scissors"){
-            var winner = "You win| Scissors beats Paper";
+            var winner = "You win";
         }
         else{
             var winner = "It is a tie";
@@ -49,12 +49,48 @@
         return winner;
     }
 
-var computerSelection = computerPlay();
-console.log(computerSelection)
-var playerSelection = "paper";
-console.log(playerSelection)
-var game = playRound(playerSelection, computerSelection);
-console.log(game);
+
+function game(){
+    var usersChoice = prompt("Enter either Rock, Paper or Scissors for a challenge");
+    var numOfWins =0;
+    var numOflose =0;
+    var numOfTies =0;
+
+    for(var i=1; i<=5; i++){
+        var computerSelection = computerPlay();
+        var playerSelection = usersChoice;
+        var session = (playRound(playerSelection, computerSelection));
+
+        if(session==="You win"){
+            numOfWins = numOfWins + 1;
+            console.log("win")
+        }
+        else if(session==="You lose"){
+            numOflose = numOflose + 1;
+            console.log("lose")
+        }
+        else{
+            numOfTies = numOfTies + 1;
+            console.log("Tie")
+        }
+         
+    }
+     if(numOfWins > numOflose){
+        var results = "You win!!!";
+    }
+    else if(numOfWins<numOflose){
+        var results = "You lose, Try again";
+    }
+    else if(numOfTies===5){ //numofties can only be = 5 when users enter wrong output
+        var results = "Wrong input";
+    }
+    else{
+        var results = "It is a tie"
+    }   
+    return results;
+}
+console.log(game()) //Calling the function, check the results it the browser console
   </script>
+
 </body>
 </html>
